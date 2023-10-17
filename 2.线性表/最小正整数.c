@@ -31,17 +31,23 @@ void Reverse(int A[],int from,int to){
     }
 }
 
-// 绝对值
-int abs(int a)
+// 数组中未出现的最小正整数
+int FindMissMin(int A[],int n)
 {
-    if(a<0) return -a;
-    return a;
-}
+    int i,*B;
+    B = (int *)malloc(n * sizeof(int));
+    memset(B, 0, n * sizeof(int)); // memset()为string.h库函数
+    for(i=0;i<n;i++)
+        if(A[i]>0 && A[i]<=n)   B[A[i]-1]=1;
+    for(i=0;i<n;i++)
+        if(B[i]==0) break;
+    return i+1;
+}// 时间复杂度：O(n) 空间复杂度：O(n)
 
 int main()
 {
     int A[] = {1, 2, 3, 4, 5};
     int n = sizeof(A) / sizeof(A[0]);
-
+    printf("最小正整数为：%d\n", FindMissMin(A, n));
     return 0;
 }

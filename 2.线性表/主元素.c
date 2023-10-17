@@ -30,18 +30,31 @@ void Reverse(int A[],int from,int to){
         Swap(&A[from+i],&A[to-i]);
     }
 }
-
-// 绝对值
-int abs(int a)
+// 数组 主元素
+int Majority(int A[], int n) 
 {
-    if(a<0) return -a;
-    return a;
+    int i,c,count=1;
+    c=A[0];
+    for(i=1;i<n;i++)
+        if(A[i]==c) count++;
+        else if (count>0) count--;
+        else 
+        {
+            c=A[i];
+            count=1;
+        }
+    if(count>0)
+        for(i=count=0;i<n;i++)
+            if(A[i]==c) count++;
+    if(count>n/2) return c;
+    else return -1;
 }
-
 int main()
 {
-    int A[] = {1, 2, 3, 4, 5};
+    int A[] = {1, 2, 2, 4, 2};
     int n = sizeof(A) / sizeof(A[0]);
-
+    int majorNum = Majority(A, n);
+    if(majorNum != -1)    printf("数组主元素为：%d\n", majorNum);
+    else printf("数组不存在主元素\n");
     return 0;
 }
