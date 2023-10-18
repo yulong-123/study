@@ -51,12 +51,13 @@ int FindMinofTrip(int A[],int n,int B[],int m,int C[],int p)
     {
         D=abs(A[i]-B[j])+abs(B[j]-C[k])+abs(C[k]-A[i]);
         if(D<D_min) D_min=D;    
-        if(min(A[i],B[j],C[k])) i++;    // 宏定义在函数中
+        if(min(A[i],B[j],C[k])) i++;    // 避免在函数中使用宏定义
         else if (min(B[j],C[k],A[i])) j++;
         else k++;
     }
     return D_min;
-}
+}// 时间复杂度：O(n) 空间复杂度：O(1)
+
 int main()
 {
     int A[] = {-1,2,9};
